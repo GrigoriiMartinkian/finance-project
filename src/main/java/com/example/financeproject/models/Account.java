@@ -25,6 +25,7 @@ public class Account {
         this.currency = currency;
     }
 
+
     // Методы доступа
     public long getId() {
         return id;
@@ -49,6 +50,8 @@ public class Account {
     public Currency getCurrency() {
         return currency;
     }
+
+
 
     // Методы для обновления данных счета
     public void updateBalance(BigDecimal newBalance, LocalDate newDate) {
