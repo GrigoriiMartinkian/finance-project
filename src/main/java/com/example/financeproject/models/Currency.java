@@ -1,11 +1,13 @@
 package com.example.financeproject.models;
 
-public enum Currency  {
+import jakarta.persistence.*;
 
-        DOLLAR,
-        EURO,
-        UAN,
-        FUNT,
-        RUB
+@Entity
+@Table(name = "currency")
+public class Currency {
 
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private long id;
+        private String code;
 }

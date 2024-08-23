@@ -1,10 +1,6 @@
 package com.example.financeproject.services;
 
-import com.example.financeproject.dto.AccountDto;
 import com.example.financeproject.models.Account;
-import com.example.financeproject.repositories.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +32,7 @@ public class AccountService {
 //        // Преобразуем в DTO и возвращаем
 //        return new AccountDto(savedAccount);
 //    }
-    public AccountDto createAccount(AccountDto accountDto){
+    public Account createAccount(AccountDto accountDto){
         return null;
     }
     public List<Account> getAllAccounts() {

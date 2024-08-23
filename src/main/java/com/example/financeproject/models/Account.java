@@ -1,63 +1,42 @@
 package com.example.financeproject.models;
 
-
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table(name = "accounts")
 public class Account {
 
-    private final long id;
-    private final AccountType type;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private long type;
     private String name;
     private BigDecimal balance;
     private LocalDate balanceDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "currency_id", nullable = false)
     private Currency currency;
-    private ArrayList<Long> transactions;
 
+    @OneToOne
+    @JoinColumn(name = "categoriesList_id", nullable = false)
+    private CategoriesList categoriesList;
 
-    public Account(long id, AccountType type, String name, BigDecimal balance, LocalDate balanceDate, Currency currency) {
-        this.id = id;
-        this.type = type;
-        this.name = name;
-        this.balance = balance;
-        this.balanceDate = balanceDate;
-        this.currency = currency;
+    public Account(){
+
     }
-
-
-    // Методы доступа
-    public long getId() {
-        return id;
-    }
-
-    public AccountType getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public LocalDate getBalanceDate() {
-        return balanceDate;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-
 
     // Методы для обновления данных счета
     public void updateBalance(BigDecimal newBalance, LocalDate newDate) {
         this.balance = newBalance;
         this.balanceDate = newDate;
     }
-
-
 }
+

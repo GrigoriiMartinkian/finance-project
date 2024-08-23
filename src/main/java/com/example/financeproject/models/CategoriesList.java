@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "categoriesList")
+public class CategoriesList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // Relationships
-    @OneToMany(mappedBy = "user")
-    private List<Account> accounts;
+    @OneToMany(mappedBy = "categoriesList")
+    private List<Category> categories;
 }

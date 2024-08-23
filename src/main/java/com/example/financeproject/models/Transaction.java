@@ -1,51 +1,28 @@
 package com.example.financeproject.models;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "transactions")
 public class Transaction {
 
-    private long AccountId;
-    private final long id;
-    private final Account account;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
     private BigDecimal amount;
-    private final LocalDate date;
-    private final String description;
-    private final Category category;
-
-    public Transaction(long id, Account account, BigDecimal amount, LocalDate date, String description, Category category) {
-        this.id = id;
-        this.account = account;
-        this.amount = amount;
-        this.date = date;
-        this.description = description;
-        this.category = category;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
+    private LocalDate date;
+    private String description;
 
     // Обновление суммы транзакции
     public void updateAmount(BigDecimal newAmount) {
